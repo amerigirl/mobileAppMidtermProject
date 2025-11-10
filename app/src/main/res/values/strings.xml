@@ -6,4 +6,6 @@
     <string name="rating">Rating</string>
     <string name="notes">Notes</string>
     <string name="save">Save</string>
+    <string name="app_name">My Movie Collection (midterm)</string>
+
 </resources>

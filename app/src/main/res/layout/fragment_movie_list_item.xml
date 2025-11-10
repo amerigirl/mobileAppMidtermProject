@@ -9,7 +9,7 @@
         android:id="@+id/textViewTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/movie_title"
+        android:text="@string/title"
         android:textSize="18sp"
         android:textStyle="bold"/>
 
@@ -17,7 +17,7 @@
         android:id="@+id/textViewDirector"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/director_name"
+        android:text="@string/director"
         android:textSize="14sp"/>
 
     <TextView

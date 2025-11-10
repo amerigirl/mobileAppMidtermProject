@@ -38,7 +38,6 @@ class InputFragment : Fragment() {
         editTextReleaseYear = view.findViewById(R.id.editTextReleaseYear)
         editTextGenre = view.findViewById(R.id.editTextGenre)
         editTextRating = view.findViewById(R.id.editTextRating)
-        editTextNotes = view.findViewById(R.id.editTextNotes)
         buttonSave = view.findViewById(R.id.buttonSave)
 
         movieViewModel = ViewModelProvider(this).get(MovieViewModel::class.java)
@@ -54,7 +53,6 @@ class InputFragment : Fragment() {
         val releaseYear = editTextReleaseYear.text.toString().toIntOrNull() ?: 0
         val genre = editTextGenre.text.toString().trim()
         val rating = editTextRating.text.toString().toFloatOrNull() ?: 0f
-        val notes = editTextNotes.text.toString().trim()
 
         if (title.isEmpty()) {
             Toast.makeText(requireContext(), "Please enter a movie title", Toast.LENGTH_SHORT).show()
