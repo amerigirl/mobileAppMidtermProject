@@ -1,59 +1,78 @@
 package com.example.mymoviecollectionmidterm
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.EditText
+import android.widget.Toast
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.launch
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [InputFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class InputFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private lateinit var editTextTitle: EditText
+    private lateinit var editTextDirector: EditText
+    private lateinit var editTextReleaseYear: EditText
+    private lateinit var editTextGenre: EditText
+    private lateinit var editTextRating: EditText
+    private lateinit var editTextNotes: EditText
+    private lateinit var buttonSave: Button
+    private lateinit var movieViewModel: MovieViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_input, container, false)
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment InputFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            InputFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        editTextTitle = view.findViewById(R.id.editTextTitle)
+        editTextDirector = view.findViewById(R.id.editTextDirector)
+        editTextReleaseYear = view.findViewById(R.id.editTextReleaseYear)
+        editTextGenre = view.findViewById(R.id.editTextGenre)
+        editTextRating = view.findViewById(R.id.editTextRating)
+        editTextNotes = view.findViewById(R.id.editTextNotes)
+        buttonSave = view.findViewById(R.id.buttonSave)
+
+        movieViewModel = ViewModelProvider(this).get(MovieViewModel::class.java)
+
+        buttonSave.setOnClickListener {
+            saveMovie()
+        }
+    }
+
+    private fun saveMovie() {
+        val title = editTextTitle.text.toString().trim()
+        val director = editTextDirector.text.toString().trim()
+        val releaseYear = editTextReleaseYear.text.toString().toIntOrNull() ?: 0
+        val genre = editTextGenre.text.toString().trim()
+        val rating = editTextRating.text.toString().toFloatOrNull() ?: 0f
+        val notes = editTextNotes.text.toString().trim()
+
+        if (title.isEmpty()) {
+            Toast.makeText(requireContext(), "Please enter a movie title", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        val newMovie = Movie(
+            title = title,
+            director = director,
+            releaseYear = releaseYear,
+            genre = genre,
+            rating = rating,
+        )
+
+        lifecycleScope.launch {
+            movieViewModel.insert(newMovie)
+            Toast.makeText(requireContext(), "Movie saved", Toast.LENGTH_SHORT).show()
+            requireActivity().supportFragmentManager.popBackStack()
+        }
     }
 }

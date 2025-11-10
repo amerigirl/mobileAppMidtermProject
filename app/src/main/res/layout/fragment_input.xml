@@ -17,6 +17,34 @@
             android:layout_height="wrap_content"
             android:inputType="text" />
 
+        <EditText
+            android:id="@+id/editTextDirector"
+            android:hint="@string/director"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text" />
+
+        <EditText
+            android:id="@+id/editTextReleaseYear"
+            android:hint="@string/release_year"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number" />
+
+        <EditText
+            android:id="@+id/editTextGenre"
+            android:hint="@string/genre"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text" />
+
+        <EditText
+            android:id="@+id/editTextRating"
+            android:hint="@string/rating"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal" />
+
 
         <Button
             android:id="@+id/buttonSave"

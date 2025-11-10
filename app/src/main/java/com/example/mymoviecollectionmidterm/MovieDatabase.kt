@@ -7,6 +7,9 @@ import androidx.room.RoomDatabase
 abstract class MovieDatabase : RoomDatabase() {
     abstract fun movieDao(): MovieDao
     companion object {
+        fun getDatabase(application: Application): Any {
+
+        }
         // Singleton instance setup for database
     }
 }
