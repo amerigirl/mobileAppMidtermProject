@@ -16,5 +16,6 @@
     <fragment
         android:id="@+id/movieInputFragment"
         android:name="com.example.mymoviecollectionmidterm.MovieInputFragment"
-        android:label="Add Movie" />
+        android:label="@string/add_movie" />
+
 </navigation>

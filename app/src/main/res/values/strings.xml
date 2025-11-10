@@ -7,5 +7,6 @@
     <string name="notes">Notes</string>
     <string name="save">Save</string>
     <string name="app_name">My Movie Collection (midterm)</string>
+    <string name="add_movie">Add Movie</string>
 
 </resources>

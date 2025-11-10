@@ -12,7 +12,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.launch
 
-class InputFragment : Fragment() {
+class MovieInputFragment : Fragment() {
 
     private lateinit var editTextTitle: EditText
     private lateinit var editTextDirector: EditText
