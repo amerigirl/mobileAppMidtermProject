@@ -1,9 +1,17 @@
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.TextView
+import androidx.recyclerview.widget.RecyclerView
+import com.example.mymoviecollectionmidterm.MovieListFragment
+import com.example.mymoviecollectionmidterm.R
+
 class MovieAdapter(private val movies: List<MovieListFragment.Movie>) :
     RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
 
     class MovieViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val titleTextView = itemView.findViewById<TextView>(R.id.titleTextView)
-        val yearTextView = itemView.findViewById<TextView>(R.id.yearTextView)
+        val titleTextView = itemView.findViewById<TextView>(R.id.textViewTitle)
+        val yearTextView = itemView.findViewById<TextView>(R.id.textViewYear)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {

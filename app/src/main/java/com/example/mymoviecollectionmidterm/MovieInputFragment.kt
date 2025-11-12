@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import kotlinx.coroutines.launch
 
 class MovieInputFragment : Fragment() {
@@ -19,8 +20,8 @@ class MovieInputFragment : Fragment() {
     private lateinit var editTextReleaseYear: EditText
     private lateinit var editTextGenre: EditText
     private lateinit var editTextRating: EditText
-    private lateinit var editTextNotes: EditText
     private lateinit var buttonSave: Button
+    private lateinit var buttonCancel: Button
     private lateinit var movieViewModel: MovieViewModel
 
     override fun onCreateView(
@@ -39,11 +40,16 @@ class MovieInputFragment : Fragment() {
         editTextGenre = view.findViewById(R.id.editTextGenre)
         editTextRating = view.findViewById(R.id.editTextRating)
         buttonSave = view.findViewById(R.id.buttonSave)
+        buttonCancel = view.findViewById(R.id.buttonCancel)    // add cancel button
 
         movieViewModel = ViewModelProvider(this).get(MovieViewModel::class.java)
 
         buttonSave.setOnClickListener {
             saveMovie()
+        }
+
+        buttonCancel.setOnClickListener {
+            findNavController().navigateUp()
         }
     }
 
@@ -65,12 +71,13 @@ class MovieInputFragment : Fragment() {
             releaseYear = releaseYear,
             genre = genre,
             rating = rating,
+
         )
 
         lifecycleScope.launch {
             movieViewModel.insert(newMovie)
             Toast.makeText(requireContext(), "Movie saved", Toast.LENGTH_SHORT).show()
-            requireActivity().supportFragmentManager.popBackStack()
+            findNavController().navigateUp()
         }
     }
 }
