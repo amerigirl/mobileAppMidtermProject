@@ -8,6 +8,7 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
 
+//MovieDao interface
 @Dao
 interface MovieDao {
     @Insert

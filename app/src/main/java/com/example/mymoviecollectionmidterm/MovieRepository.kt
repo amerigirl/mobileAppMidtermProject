@@ -12,5 +12,4 @@ class MovieRepository(private val movieDao: MovieDao) {
         movieDao.insert(movie)
     }
 
-    // Add other data operations such as update, delete here if needed
 }

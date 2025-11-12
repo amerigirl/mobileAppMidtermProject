@@ -5,6 +5,7 @@ import androidx.room.RoomDatabase
 import com.example.mymoviecollectionmidterm.Movie
 import com.example.mymoviecollectionmidterm.MovieDao
 
+//MovieDatabase class
 @Database(entities = [Movie::class], version = 1)
 abstract class MovieDatabase : RoomDatabase() {
     abstract fun movieDao(): MovieDao
@@ -13,6 +14,7 @@ abstract class MovieDatabase : RoomDatabase() {
         @Volatile
         private var INSTANCE: MovieDatabase? = null
 
+        //getDatabase function
         fun getDatabase(context: Context): MovieDatabase {
             return INSTANCE ?: synchronized(this) {
                 val instance = Room.databaseBuilder(

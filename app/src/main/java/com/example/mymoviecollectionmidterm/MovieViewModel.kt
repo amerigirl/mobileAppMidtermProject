@@ -16,7 +16,7 @@ class MovieViewModel(application: Application) : AndroidViewModel(application) {
         repository = MovieRepository(movieDao)
         allMovies = repository.allMovies
     }
-
+//Insert function
     fun insert(movie: Movie) = viewModelScope.launch {
         repository.insert(movie)
     }

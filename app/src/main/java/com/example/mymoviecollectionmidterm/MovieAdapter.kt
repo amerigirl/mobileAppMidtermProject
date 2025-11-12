@@ -9,17 +9,20 @@ import com.example.mymoviecollectionmidterm.R
 class MovieAdapter(private val movies: List<MovieListFragment.Movie>) :
     RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
 
+        // ViewHolder class to hold the views for each item in the RecyclerView
     class MovieViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val titleTextView = itemView.findViewById<TextView>(R.id.textViewTitle)
         val yearTextView = itemView.findViewById<TextView>(R.id.textViewYear)
     }
 
+    // Inflate the layout for each item and return a ViewHolder
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.fragment_movie_list_item, parent, false)
         return MovieViewHolder(view)
     }
 
+    // Bind the data to the views for each item
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
         val movie = movies[position]
         holder.titleTextView.text = movie.title

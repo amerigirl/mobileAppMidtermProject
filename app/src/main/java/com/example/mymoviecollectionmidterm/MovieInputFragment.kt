@@ -15,6 +15,7 @@ import kotlinx.coroutines.launch
 
 class MovieInputFragment : Fragment() {
 
+    // Declare UI components
     private lateinit var editTextTitle: EditText
     private lateinit var editTextDirector: EditText
     private lateinit var editTextReleaseYear: EditText
@@ -24,6 +25,7 @@ class MovieInputFragment : Fragment() {
     private lateinit var buttonCancel: Button
     private lateinit var movieViewModel: MovieViewModel
 
+    // Inflate the layout for this fragment
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -31,6 +33,7 @@ class MovieInputFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_input, container, false)
     }
 
+    // Initialize UI components and set up listeners
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -53,6 +56,7 @@ class MovieInputFragment : Fragment() {
         }
     }
 
+    // Save the movie to the database
     private fun saveMovie() {
         val title = editTextTitle.text.toString().trim()
         val director = editTextDirector.text.toString().trim()
@@ -74,6 +78,7 @@ class MovieInputFragment : Fragment() {
             rating = rating,
         )
 
+        // Use a coroutine to insert the movie into the database
         lifecycleScope.launch {
             movieViewModel.insert(newMovie)
             Toast.makeText(requireContext(), "Movie saved", Toast.LENGTH_SHORT).show()

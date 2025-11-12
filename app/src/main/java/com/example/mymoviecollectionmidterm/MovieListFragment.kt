@@ -24,11 +24,13 @@ class MovieListFragment : Fragment() {
         Movie("Interstellar", 2014)
     )
 
+    // Set the title of the fragment's activity
     override fun onResume() {
         super.onResume()
         activity?.title = "Awesome Movie List"
     }
 
+    // Inflate the layout for this fragment
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
