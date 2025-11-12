@@ -22,5 +22,10 @@
     <fragment
         android:id="@+id/movieInputFragment"
         android:name="com.example.mymoviecollectionmidterm.MovieInputFragment"
-        android:label="@string/add_movie" />
+        android:label="@string/add_movie" >
+        <action
+            android:id="@+id/action_movieInputFragment_to_movieListFragment"
+            app:destination="@id/movieListFragment" />
+    </fragment>
+
 </navigation>

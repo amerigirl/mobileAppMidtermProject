@@ -61,7 +61,8 @@ class MovieInputFragment : Fragment() {
         val rating = editTextRating.text.toString().toFloatOrNull() ?: 0f
 
         if (title.isEmpty()) {
-            Toast.makeText(requireContext(), "Please enter a movie title", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), "Please enter a movie title", Toast.LENGTH_SHORT)
+                .show()
             return
         }
 
@@ -71,13 +72,17 @@ class MovieInputFragment : Fragment() {
             releaseYear = releaseYear,
             genre = genre,
             rating = rating,
-
         )
 
         lifecycleScope.launch {
             movieViewModel.insert(newMovie)
             Toast.makeText(requireContext(), "Movie saved", Toast.LENGTH_SHORT).show()
-            findNavController().navigateUp()
+
+            // Navigate with Safe Args only after insert completes successfully
+            val action = MovieInputFragmentDirections.actionMovieInputFragmentToMovieListFragment(newMovie)
+            findNavController().navigate(action)
+
         }
     }
 }
+
